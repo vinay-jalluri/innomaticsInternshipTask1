@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Budget Tracker</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+
+@keyframes backgroundAnimation {
+    0% { background: linear-gradient(to right, #ff9a9e, #fad0c4); }
+    100% { background: linear-gradient(to right, #fad0c4, #ff9a9e); }
+}
+
+header {
+    color: white;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #D9AFD9;
+    background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+header:hover {
+    transform: scale(1.02);
+}
+
+nav {
+    width: 100%;
+    padding: 10px 0;
+    background: linear-gradient(to right, #be6e6ee2, #000000);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap:wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 5px;
+    transition: background 0.5s, transform 0.3s;
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+}
+
+nav ul li a:hover {
+    background: linear-gradient(to right, #b8a6a6, #ff6363);
+    transform: scale(1.1);
+}
+.budget-container {
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+
+}
+.budget-box {
+    background: linear-gradient(to right, #ffeb3b, #ffcc00);
+    margin:20px;
+    padding: 10px;
+    width: 120px;
+    height: 100px;
+    border: solid ;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s;
+    border-radius: 10px;
+}
+
+.budget-box:hover {
+    transform: rotateY(15deg) scale(1.05);
+    box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.4);
+    background-color: #e3d515dd;
+}
+h2 p{
+    justify-content: center;
+}
+
+form {
+    background: linear-gradient(to right, #c8e6c9, #a5d6a7);
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    transition: transform 0.4s;
+}
+
+form:hover {
+    transform: scale(1.05) rotateX(10deg);
+}
+#type #amount #date #description{
+    padding:10px;
+}
+.type .amount date .description{
+    padding:10px;
+}
+button {
+    background: linear-gradient(to right, #28a745, #218838);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border-radius: 5px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(to right, #218838, #28a745);
+    transform: translateY(-3px) scale(1.1);
+}
+table {
+    width: 80%;
+    margin: 20px auto;
+    background: linear-gradient(to right, #ffccbc, #ffab91);
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+table, th, td {
+    border: 1px solid #d32f2f;
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    background: linear-gradient(to right, #ff7043, #ff5722);
+    color: white;
+}
+
+
+
+footer {
+    background: linear-gradient(to right, #1e88e5, #1976d2);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.3);
+    animation: footerGlow 3s infinite alternate;
+}
+
+@keyframes footerGlow {
+    0% { box-shadow: 0px -4px 20px rgba(255, 255, 255, 0.4); }
+    100% { box-shadow: 0px -4px 25px rgba(255, 255, 255, 0.5); }
+}
+
+@media (max-width: 768px) {
+    .budget-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    form {
+        width: 90%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Personal Budget Tracker</h1>
+        <nav>
+            <ul>
+                <li><a href="#income">Income</a></li>
+                <li><a href="#expenses">Expenses</a></li>
+                <li><a href="#balance">Balance</a></li>
+                <li><a href="#add-transaction">Add Transaction</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <section class="budget-container">
+            <div class="budget-box" id="income">
+                <h2>Income</h2>
+                <p>$5000</p>
+            </div>
+            <div class="budget-box" id="expenses">
+                <h2>Expenses</h2>
+                <p>$2000</p>
+            </div>
+            <div class="budget-box" id="balance">
+                <h2>Balance</h2>
+                <p>$3000</p>
+            </div>
+        </section>
+        
+        <section id="add-transaction">
+            <h2>Add Transaction</h2>
+            <form>
+                <fieldset>
+                    <legend>Transaction Details</legend>
+                    <label class="type" for="type">Type:</label>
+                    <select id="type" name="type">
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <br>
+                    <label class="amount" for="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" required>
+                    <br>
+                    <label class="date" for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                    <br>
+                    <label class="description" for="description">Description:</label>
+                    <textarea id="description" name="description" rows="3" required></textarea>
+                    <br>
+                    <button type="submit">Add</button>
+                </fieldset>
+            </form>
+        </section>
+        <section>
+            <h2>Transaction History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025-01-01</td>
+                        <td>Income</td>
+                        <td>$3000</td>
+                        <td>Salary</td>
+                    </tr>
+                    <tr>
+                        <td>2025-01-02</td>
+                        <td>Expense</td>
+                        <td>$500</td>
+                        <td>Groceries</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <br>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Budget Tracker. All rights reserved.</p>
+    </footer>
+</body>
+</html>
